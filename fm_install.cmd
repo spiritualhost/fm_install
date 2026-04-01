@@ -1,5 +1,11 @@
 @echo off
 
+:: Connect to network share and get drive letter
+call "%~dp0config.bat"
+echo %NET_SHARE%
+for /f "tokens=2" %%D in ('net use * %NET_SHARE% ^| find "Drive"') do set DRIVE_LETTER=%%D
+echo %DRIVE_LETTER%
+
 :: EULA acceptance
 set AI_LICENSE_ACCEPTED=1
 :: Get system user name, which should match the AD name used to log into FileMaker
@@ -53,3 +59,6 @@ PAUSE
 
 :: Install the software and display a dialog box indicating whether the software was successfully installed. 
 :: "\setup.exe" /qn+
+
+:: Clean up network share connection
+net use %DRIVE_LETTER% /delete
