@@ -35,7 +35,12 @@ The config file will be used later in the script runtime to connect to the head 
 
 ![Edit Config File](assets/readme-edit-config.gif)
 
-4) Download the repo to the user's PC
+4) Move the edited config file to the root of the repo
+
+```bash
+cd .\fm_install\
+mv .\assets\config.bat .
+```
 
 
 

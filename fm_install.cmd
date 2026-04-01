@@ -1,5 +1,8 @@
 @echo off
 
+:: For expanded wildcards 
+setlocal enabledelayedexpansion
+
 :: Connect to network share and get drive letter
 call "%~dp0config.bat"
 echo %NET_SHARE%
@@ -60,38 +63,33 @@ PAUSE
 set "ROOT_PATH=%DRIVE_LETTER%\FileMaker*"
 echo %ROOT_PATH%
 
-set "SETUP_PATH=%ROOT_PATH%\setup"
+for /d %%D in ("%ROOT_PATH%") do (
+    set "SETUP_PATH=%%D\setup.exe"
+)
 echo %SETUP_PATH%
-
 
 ::Silent assisted installation options -- to use another option, uncomment
 
 :: Install without a user interface (silent installation)
-:: "pathname\setup.exe" /qn
+:: "%SETUP_PATH%" /qn
 
 :: Uninstall without a user interface (silent uninstallation)
-:: "pathname\setup.exe" /x /qn 
+:: "%SETUP_PATH%" /x /qn 
 
 :: Install when required—advertise to current user (silent advertised installation)
-:: "pathname\setup.exe" /q /ju 
+:: "%SETUP_PATH%" /q /ju 
 
 :: Install when required—advertise to all users (silent advertised installation)
-:: "pathname\setup.exe" /q /jm
+:: "%SETUP_PATH%" /q /jm
 
 :: Install the software and display a dialog box indicating whether the software was successfully installed. 
-:: "\setup.exe" /qn+
+"%SETUP_PATH%" /qn+
 
 :: Install and display a progress bar and Cancel button during installation
-:: "pathname\setup.exe" /qb+ 
+:: "%SETUP_PATH%" /qb+ 
 
 :: Install to a non-default location on the user's computer
-:: "pathname\setup.exe" /qb+ INSTALLDIR="installpath"
-
-
-
-
-
-
+:: "%SETUP_PATH%" /qb+ INSTALLDIR="installpath"
 
 :: Clean up network share connection
 net use %DRIVE_LETTER% /delete
