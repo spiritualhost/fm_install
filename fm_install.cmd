@@ -56,9 +56,42 @@ for /f "delims=" %%V in ('set AI 2^nul') do (
 
 PAUSE
 
+:: Create path variables using wildcards
+set "ROOT_PATH=%DRIVE_LETTER%\FileMaker*"
+echo %ROOT_PATH%
+
+set "SETUP_PATH=%ROOT_PATH%\setup"
+echo %SETUP_PATH%
+
+
+::Silent assisted installation options -- to use another option, uncomment
+
+:: Install without a user interface (silent installation)
+:: "pathname\setup.exe" /qn
+
+:: Uninstall without a user interface (silent uninstallation)
+:: "pathname\setup.exe" /x /qn 
+
+:: Install when required—advertise to current user (silent advertised installation)
+:: "pathname\setup.exe" /q /ju 
+
+:: Install when required—advertise to all users (silent advertised installation)
+:: "pathname\setup.exe" /q /jm
 
 :: Install the software and display a dialog box indicating whether the software was successfully installed. 
 :: "\setup.exe" /qn+
+
+:: Install and display a progress bar and Cancel button during installation
+:: "pathname\setup.exe" /qb+ 
+
+:: Install to a non-default location on the user's computer
+:: "pathname\setup.exe" /qb+ INSTALLDIR="installpath"
+
+
+
+
+
+
 
 :: Clean up network share connection
 net use %DRIVE_LETTER% /delete
