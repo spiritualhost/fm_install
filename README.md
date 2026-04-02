@@ -75,3 +75,6 @@ This project is licensed under the GPL-3.0 License - see the LICENSE.md file for
 ## Acknowledgments
 
 * [Claris Docs](https://help.claris.com/en/pro-network-install-setup-guide/content/index.html)
+* [More Information on Silent Assisted Installations](https://help.claris.com/en/pro-network-install-setup-guide/content/setting-up-silent-assisted-install-windows.html)
+* [Instructions on Properly Setting up the Networked Volume](https://help.claris.com/en/pro-network-install-setup-guide/content/installing-network-windows.html)
+* [More Information Personalization Properties](https://help.claris.com/en/pro-network-install-setup-guide/content/setting-personalization-properties.html)
