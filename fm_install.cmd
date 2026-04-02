@@ -55,8 +55,6 @@ for /f "delims=" %%V in ('set AI 2^nul') do (
     echo %%V >> "Assisted Install.txt"
 )
 
-PAUSE
-
 :: Create path variables using wildcards
 set "ROOT_PATH=%NET_SHARE%\Filemaker*"
 echo %ROOT_PATH%
