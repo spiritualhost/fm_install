@@ -54,7 +54,15 @@ You should now be prepared to run the script.
 
 ## Help
 
-***Can probably add something here as well.***
+```bash
+# Run this for help
+.\fm_install.cmd /h
+
+# Run this for verbose terminal output
+.\fm_install.cmd /v
+```
+
+If you don't run the script as an administrator, the installation will stop for a UAC prompt. Don't use the `/h` flag when running as GPO
 
 ## Authors
 
@@ -62,11 +70,6 @@ Contributors names and contact info
 
 Ryan Piazza
 [@spiritualhost](https://github.com/spiritualhost)
-
-## Version History
-
-* 0.1
-    * Initial Release
 
 ## License
 
