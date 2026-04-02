@@ -64,7 +64,7 @@ set "ROOT_PATH=%DRIVE_LETTER%\FileMaker*"
 echo %ROOT_PATH%
 
 for /d %%D in ("%ROOT_PATH%") do (
-    set "SETUP_PATH=%%D\setup.exe"
+    set "SETUP_PATH=%%D\Files\setup.exe"
 )
 echo %SETUP_PATH%
 
