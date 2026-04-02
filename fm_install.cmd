@@ -6,8 +6,6 @@ setlocal enabledelayedexpansion
 :: Connect to network share and get drive letter
 call "%~dp0config.bat"
 echo %NET_SHARE%
-for /f "tokens=2" %%D in ('net use * %NET_SHARE% ^| find "Drive"') do set DRIVE_LETTER=%%D
-echo %DRIVE_LETTER%
 
 :: EULA acceptance
 set AI_LICENSE_ACCEPTED=1
@@ -60,16 +58,15 @@ for /f "delims=" %%V in ('set AI 2^nul') do (
 PAUSE
 
 :: Create path variables using wildcards
-set "ROOT_PATH=%DRIVE_LETTER%\FileMaker*"
+set "ROOT_PATH=%NET_SHARE%\Filemaker*"
 echo %ROOT_PATH%
 
 for /d %%D in ("%ROOT_PATH%") do (
     set "SETUP_FILEPATH=%%D\Files"
 )
-echo %SETUP_FILEPATH%
 
-:: Move the 'Assisted Install.txt' file created above to the proper place
-move /y "Assisted Install.txt" "%SETUP_FILEPATH%"
+:: Copy the 'Assisted Install.txt' file created above to the proper place
+copy /y "Assisted Install.txt" "%SETUP_FILEPATH%\Assisted Install.txt"
 
 :: Create variable path pointing to setup.exe
 set "SETUP_EXECUTABLE_PATH=%SETUP_FILEPATH%\setup.exe"
@@ -98,6 +95,3 @@ echo %SETUP_EXECUTABLE_PATH%
 
 :: Install to a non-default location on the user's computer
 :: "%SETUP_EXECUTABLE_PATH%" /qb+ INSTALLDIR="installpath"
-
-:: Clean up network share connection
-net use %DRIVE_LETTER% /delete
