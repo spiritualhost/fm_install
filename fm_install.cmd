@@ -110,6 +110,13 @@ copy /y "Assisted Install.txt" "%SETUP_FILEPATH%\Assisted Install.txt"
 :: Create variable path pointing to setup.exe
 set "SETUP_EXECUTABLE_PATH=%SETUP_FILEPATH%\setup.exe"
 
+for /d %%D in ("C:\Program Files\FileMaker\FileMaker*") do (
+    if exist "%%D\FileMaker Pro.exe" (
+        :: Uninstall without a user interface (silent uninstallation)
+        "%SETUP_EXECUTABLE_PATH%" /x /qn
+    )
+)
+
 :: Verbose debug output
 if "%VERBOSE%"=="1" echo [VERBOSE] Setup Executable path is "%SETUP_EXECUTABLE_PATH%", now installing...
 
@@ -117,9 +124,6 @@ if "%VERBOSE%"=="1" echo [VERBOSE] Setup Executable path is "%SETUP_EXECUTABLE_P
 
 :: Install without a user interface (silent installation)
 :: "%SETUP_EXECUTABLE_PATH%" /qn
-
-:: Uninstall without a user interface (silent uninstallation)
-:: "%SETUP_EXECUTABLE_PATH%" /x /qn 
 
 :: Install when required—advertise to current user (silent advertised installation)
 :: "%SETUP_EXECUTABLE_PATH%" /q /ju 
