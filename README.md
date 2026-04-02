@@ -1,4 +1,4 @@
-# Project Title
+# FileMaker Assisted Silent Installation Automation Script
 
 Claris FileMaker installation automation script.
 
