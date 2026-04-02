@@ -3,9 +3,45 @@
 :: For expanded wildcards 
 setlocal enabledelayedexpansion
 
+:: Define flags
+set VERBOSE=0
+
+:PARSE_ARGS
+if "%~1"=="" (
+    goto :END_PARSE
+) else if /i "%~1"=="/h" (
+    goto :HELP
+) else if /i "%~1"=="/help" (
+    goto :HELP
+) else if /i "%~1"=="/v" (
+    set VERBOSE=1
+) else if /i "%~1"=="/verbose" (
+    set VERBOSE=1
+) else (
+    goto :EOF
+)
+shift /1
+goto :PARSE_ARGS
+
+:END_PARSE
+goto :MAIN
+
+:: Helpful info
+:HELP
+echo Usage: fm_install.cmd [/h^|/help ^| /v^|/verbose]
+echo. 
+echo /h, /help  Show this help
+echo /v, /verbose   Enable verbose output
+echo.
+echo Only one flag can be used per run. 
+goto :EOF
+
+:MAIN
 :: Connect to network share and get drive letter
 call "%~dp0config.bat"
-echo %NET_SHARE%
+
+:: Verbose debug output
+if "%VERBOSE%"=="1" echo [VERBOSE] Net share is "%NET_SHARE%"
 
 :: EULA acceptance
 set AI_LICENSE_ACCEPTED=1
@@ -44,6 +80,9 @@ set AI_SET_FILE_CACHE=
 :: Enable or disable accessing external URLs when starting FileMaker Pro
 set AI_DISABLEEXTERNALURLS=0
 
+:: Verbose debug output
+if "%VERBOSE%"=="1" echo [VERBOSE] Creating 'Assisted Install.txt'
+
 :: Create Assisted Install.txt file (no >>, new file created)
 echo: > "Assisted Install.txt"
 echo [Assisted Install] >> "Assisted Install.txt"
@@ -57,7 +96,9 @@ for /f "delims=" %%V in ('set AI 2^nul') do (
 
 :: Create path variables using wildcards
 set "ROOT_PATH=%NET_SHARE%\Filemaker*"
-echo %ROOT_PATH%
+
+:: Verbose debug output
+if "%VERBOSE%"=="1" echo [VERBOSE] Root path is "%ROOT_PATH%"
 
 for /d %%D in ("%ROOT_PATH%") do (
     set "SETUP_FILEPATH=%%D\Files"
@@ -69,7 +110,8 @@ copy /y "Assisted Install.txt" "%SETUP_FILEPATH%\Assisted Install.txt"
 :: Create variable path pointing to setup.exe
 set "SETUP_EXECUTABLE_PATH=%SETUP_FILEPATH%\setup.exe"
 
-echo %SETUP_EXECUTABLE_PATH%
+:: Verbose debug output
+if "%VERBOSE%"=="1" echo [VERBOSE] Setup Executable path is "%SETUP_EXECUTABLE_PATH%", now installing...
 
 ::Silent assisted installation options -- to use another option, have at most *one* uncommented at runtime
 
@@ -93,3 +135,7 @@ echo %SETUP_EXECUTABLE_PATH%
 
 :: Install to a non-default location on the user's computer
 :: "%SETUP_EXECUTABLE_PATH%" /qb+ INSTALLDIR="installpath"
+
+::End script cleanly
+if "%VERBOSE%"=="1" echo [VERBOSE] Script exiting...
+goto :EOF
