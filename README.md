@@ -50,7 +50,35 @@ You should now be prepared to run the script.
 
 ### Executing program
 
+#### Run interactively
+
 1) Right click the `fm_install.cmd` script and click "Run as Administrator."
+
+#### Run as Active Directory GPO
+
+1) Open the domain controller for the computers in question.
+
+2) Open Windows Administrative Tools and start both Group Policy Management and Active Directory Users and Computers.
+
+3) In AD Users and Computers, ensure that all PCs you want to use are in the same Organizational Unit (OU).
+
+4) In Group Policy Management, follow the path to get to your specified OU in the left-hand menu, then click the folder. The window should now display three tabs "Linked Group Policy Objects," "Group Policy Inheritance," and "Delegation." Right click on the OU on the left-hand menu and click "Create a GPO in this domain, and Link it here..."
+
+5) Go down the following path:
+
+```bash
+User Configuration
+  └── Policies
+        └── Windows Settings
+              └── Scripts (Logon/Logoff)
+                    └── Logon
+```
+
+Click `Properties`.
+
+6) In the Scripts tab, click Add on the right-hand side of the window, then click Browse. Navigate to the network share where the `fm_install.cmd` script is located and set the file path to its location. Confirm everything and exit the domain controller.
+
+The script will now run for all applicable computers when they next log on.
 
 ## Help
 
@@ -62,7 +90,7 @@ You should now be prepared to run the script.
 .\fm_install.cmd /v
 ```
 
-If you don't run the script as an administrator, the installation will stop for a UAC prompt. Don't use the `/h` flag when running as GPO
+If you don't run the script as an administrator, the installation will stop for a UAC prompt. Don't use the `/h` flag when running as GPO.
 
 ## Authors
 
