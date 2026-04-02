@@ -64,32 +64,40 @@ set "ROOT_PATH=%DRIVE_LETTER%\FileMaker*"
 echo %ROOT_PATH%
 
 for /d %%D in ("%ROOT_PATH%") do (
-    set "SETUP_PATH=%%D\Files\setup.exe"
+    set "SETUP_FILEPATH=%%D\Files"
 )
-echo %SETUP_PATH%
+echo %SETUP_FILEPATH%
 
-::Silent assisted installation options -- to use another option, uncomment
+:: Move the 'Assisted Install.txt' file created above to the proper place
+move /y "Assisted Install.txt" "%SETUP_FILEPATH%"
+
+:: Create variable path pointing to setup.exe
+set "SETUP_EXECUTABLE_PATH=%SETUP_FILEPATH%\setup.exe"
+
+echo %SETUP_EXECUTABLE_PATH%
+
+::Silent assisted installation options -- to use another option, have at most *one* uncommented at runtime
 
 :: Install without a user interface (silent installation)
-:: "%SETUP_PATH%" /qn
+:: "%SETUP_EXECUTABLE_PATH%" /qn
 
 :: Uninstall without a user interface (silent uninstallation)
-:: "%SETUP_PATH%" /x /qn 
+:: "%SETUP_EXECUTABLE_PATH%" /x /qn 
 
 :: Install when required—advertise to current user (silent advertised installation)
-:: "%SETUP_PATH%" /q /ju 
+:: "%SETUP_EXECUTABLE_PATH%" /q /ju 
 
 :: Install when required—advertise to all users (silent advertised installation)
-:: "%SETUP_PATH%" /q /jm
+:: "%SETUP_EXECUTABLE_PATH%" /q /jm
 
 :: Install the software and display a dialog box indicating whether the software was successfully installed. 
-"%SETUP_PATH%" /qn+
+"%SETUP_EXECUTABLE_PATH%" /qn+
 
 :: Install and display a progress bar and Cancel button during installation
-:: "%SETUP_PATH%" /qb+ 
+:: "%SETUP_EXECUTABLE_PATH%" /qb+ 
 
 :: Install to a non-default location on the user's computer
-:: "%SETUP_PATH%" /qb+ INSTALLDIR="installpath"
+:: "%SETUP_EXECUTABLE_PATH%" /qb+ INSTALLDIR="installpath"
 
 :: Clean up network share connection
 net use %DRIVE_LETTER% /delete
