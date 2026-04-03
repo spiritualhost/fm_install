@@ -1,5 +1,8 @@
 @echo off
 
+:: Prevent UAC elevation for child processes
+set __COMPAT_LAYER=RunAsInvoker
+
 :: For expanded wildcards 
 setlocal enabledelayedexpansion
 
