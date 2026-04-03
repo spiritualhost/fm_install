@@ -120,6 +120,8 @@ for /d %%D in ("C:\Program Files\FileMaker\FileMaker*") do (
     if exist "%%D\FileMaker Pro.exe" (
         :: Uninstall without a user interface (silent uninstallation)
         "%SETUP_EXECUTABLE_PATH%" /x /qn
+        :: Brief post-uninstall delay
+        timeout /t 20 /nobreak >nul
     )
 )
 
