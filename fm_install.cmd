@@ -123,7 +123,7 @@ for /d %%D in ("C:\Program Files\FileMaker\FileMaker*") do (
 ::Silent assisted installation options -- to use another option, have at most *one* uncommented at runtime
 
 :: Install without a user interface (silent installation)
-:: "%SETUP_EXECUTABLE_PATH%" /qn
+"%SETUP_EXECUTABLE_PATH%" /qn
 
 :: Install when required—advertise to current user (silent advertised installation)
 :: "%SETUP_EXECUTABLE_PATH%" /q /ju 
@@ -135,7 +135,7 @@ for /d %%D in ("C:\Program Files\FileMaker\FileMaker*") do (
 :: "%SETUP_EXECUTABLE_PATH%" /qn+
 
 :: Install and display a progress bar without a cancel button during installation
-"%SETUP_EXECUTABLE_PATH%" /qb-
+:: "%SETUP_EXECUTABLE_PATH%" /qb-
 
 :: Install and display a progress bar and Cancel button during installation
 :: "%SETUP_EXECUTABLE_PATH%" /qb+ 
