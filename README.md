@@ -67,12 +67,14 @@ You should now be prepared to run the script.
 5) Go down the following path:
 
 ```bash
-User Configuration
+Computer Configuration
   └── Policies
         └── Windows Settings
-              └── Scripts (Logon/Logoff)
-                    └── Logon
+              └── Scripts (Startup/Shutdown)
+                    └── Startup
 ```
+
+We do this instead of Logon/Logoff because we want the script to run as SYSTEM so UAC doesn't prevent the installation from happening silently.
 
 Click `Properties`.
 
