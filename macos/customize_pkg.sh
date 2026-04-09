@@ -28,9 +28,7 @@ mkdir -p working/
 
 # List the files in the directory
 ls -lh $MOUNT_PATH
-cp "$MOUNT_PATH/FileMaker Pro.app" working/ || (echo "Error copying app bundle" && exit 1)
-cp "$MOUNT_PATH/Assisted Install.txt" working/ || (echo "Error copying Assisted Install file" && exit 1)
-cp "$MOUNT_PATH/License Agreements/" working/ || (echo "Error copying License Agreements" && exit 1)
+cp -r "$MOUNT_PATH"/* working/ || (echo "Error copying app bundle" && exit 1)
 
 # Unmount the DMG
 hdiutil detach $MOUNT_PATH
