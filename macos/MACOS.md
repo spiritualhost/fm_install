@@ -22,19 +22,20 @@ cd fm_install
 #b. Ignore file permission changes (i.e., after making executable in step 2, allow pulling cleanly for repo updates)
 git config --global core.fileMode false
 
-#b. Enable sparse checkout
+#c. Enable sparse checkout
 git sparse-checkout init --cone
 
-#c. Specify the folder
+#d. Specify the folder
 git sparse-checkout set macos/
 
-#d. Finalize the checkout
+#e. Finalize the checkout
 git checkout
 ```
 
 2) Run the [customize_pkg.sh script](./customize_pkg.sh). It may require making it executable first:
 
 ```bash
+cd macos/
 chmod +x customize_pkg.sh
 ./customize_pkg.sh
 ```
