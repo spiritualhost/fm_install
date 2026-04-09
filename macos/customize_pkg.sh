@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Open the file explorer (Finder) to select a file
-DMG_PATH=$(osascript -e 'POSIX path of (choose file with prompt "Select the FileMaker Pro DMG: ")')
+DMG_PATH=$(osascript -e 'POSIX path of (choose file with prompt "Select the FileMaker Pro DMG")')
 
 # Check if the user cancelled the script
 if [ -z "$DMG_PATH" ]; then
@@ -12,7 +12,7 @@ else
 fi
 
 # Mount the DMG
-if MOUNT_PATH=$(hdiutil attach "$DMG_PATH" | awk 'END {print $NF}'); then
+if MOUNT_PATH=$(hdiutil attach "$DMG_PATH" | grep -o '/Volumes/.*/'); then
     echo "DMG Mounted Successfully. Examining file contents."
 else
     echo "Error mounting DMG: $?"
