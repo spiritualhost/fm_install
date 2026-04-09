@@ -19,6 +19,9 @@ For macos specific instructions from Claris, [see here](https://help.claris.com/
 git clone --filter=blob:none --no-checkout https://github.com/spiritualhost/fm_install.git
 cd fm_install
 
+#b. Ignore file permission changes (i.e., after making executable in step 2, allow pulling cleanly for repo updates)
+git config --global core.fileMode false
+
 #b. Enable sparse checkout
 git sparse-checkout init --cone
 
