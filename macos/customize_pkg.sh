@@ -43,10 +43,13 @@ fi
 # Move the selected license into the working directory
 rsync -av "$LICENSE_CERT" working/
 
-#Alter the assisted install file here if desired
+# Alter the assisted install file here if desired
 
-#Download the Apple Remote Desktop deployment script for FileMaker Pro
-curl -L -o working/ "https://www.filemaker.com/redirects/fmp22_admin.html?page=docs_ardscript&lang=en" || (echo "Failure downloading Apple Remote Desktop resource from Claris servers, please try again later" && exit 1)
+# Download the Apple Remote Desktop deployment script for FileMaker Pro
+curl -L --output-dir working/ -o claris_ard.zip "https://www.filemaker.com/redirects/fmp22_admin.html?page=docs_ardscript&lang=en" || (echo "Failure downloading Apple Remote Desktop resource from Claris servers, please try again later" && exit 1)
+
+# Extract contents of directory from Claris
+unzip "working"/*.zip -d working/claris_ard
 
 # Unmount the DMG
 hdiutil detach "$MOUNT_PATH"
