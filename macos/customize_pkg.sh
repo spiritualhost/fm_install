@@ -12,8 +12,12 @@ else
 fi
 
 # Mount the DMG
-if MOUNT_PATH=$(hdiutil attach "$DMG_PATH" -nobrowse | grep -o '/Volumes/.*/'); then
-    echo "DMG Mounted Successfully. Examining file contents."
+MOUNT_OUTPUT=$(hdiutil attach "$DMG_PATH" -nobrowse)
+
+#Get the mount path from /Volumes/
+if [ $? -eq 0 ]; then
+    MOUNT_PATH=$(echo "$MOUNT_OUTPUT" | grep -o '/Volumes/File.*')
+    echo "DMG Mounted Successfully at $MOUNT_PATH. Examining file contents."
 else
     echo "Error mounting DMG: $?"
     exit 1
