@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Open the file explorer (Finder) to select a file
+# Open the file explorer (Finder) to select the FileMaker DMG file
 DMG_PATH=$(osascript -e 'POSIX path of (choose file with prompt "Select the FileMaker Pro DMG")')
 
 # Check if the user cancelled the script
@@ -27,8 +27,18 @@ fi
 mkdir -p working/
 
 # List the files in the directory
-ls -lh $MOUNT_PATH
-cp -r "$MOUNT_PATH"/* working/ || (echo "Error copying app bundle" && exit 1)
+rsync -av "$MOUNT_PATH"/* working/ || (echo "Error copying app bundle" && exit 1)
+
+#Have user grab the license certificate
+LICENSE_CERT=$(osascript -e 'POSIX path of (choose file with prompt "Select the FileMaker License Certificate")')
+
+# Check if the user cancelled the script
+if [ -z "$LICENSE_CERT" ]; then
+    echo "No file selected."
+    exit 1
+else
+    echo "You selected $LICENSE_CERT"
+fi
 
 # Unmount the DMG
-hdiutil detach $MOUNT_PATH
+hdiutil detach "$MOUNT_PATH"
