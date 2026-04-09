@@ -10,6 +10,8 @@ For macos specific instructions from Claris, [see here](https://help.claris.com/
 
 ### Instructions
 
+#### Create a customized FileMaker Pro .pkg file using a command-line script
+
 1) Clone the repo:
 
 ```bash
@@ -26,3 +28,8 @@ git sparse-checkout set macos/
 #d. Finalize the checkout
 git checkout
 ```
+
+2) Run 
+
+
+#### Deploy the customized .pkg to your user's computers
