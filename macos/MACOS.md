@@ -29,7 +29,13 @@ git sparse-checkout set macos/
 git checkout
 ```
 
-2) Run 
+2) Run the [customize_pkg.sh script](./customize_pkg.sh). It may require making it executable first:
+
+```bash
+chmod +x customize_pkg.sh
+./customize_pkg.sh
+```
+
 
 
 #### Deploy the customized .pkg to your user's computers
