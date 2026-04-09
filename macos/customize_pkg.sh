@@ -14,7 +14,7 @@ fi
 # Mount the DMG
 MOUNT_OUTPUT=$(hdiutil attach "$DMG_PATH" -nobrowse)
 
-#Get the mount path from /Volumes/
+# Get the mount path from /Volumes/
 if [ $? -eq 0 ]; then
     MOUNT_PATH=$(echo "$MOUNT_OUTPUT" | grep -o '/Volumes/File.*')
     echo "DMG Mounted Successfully at $MOUNT_PATH. Examining file contents."
@@ -23,10 +23,14 @@ else
     exit 1
 fi
 
-echo $MOUNT_PATH
+#Create a working folder
+mkdir -p working/
 
 # List the files in the directory
-#ls -lh /Volumes/MountedVolumeName
+ls -lh $MOUNT_PATH
+cp "$MOUNT_PATH/FileMaker Pro.app" working/ || (echo "Error copying app bundle" && exit 1)
+cp "$MOUNT_PATH/Assisted Install.txt" working/ || (echo "Error copying Assisted Install file" && exit 1)
+cp "$MOUNT_PATH/License Agreements/" working/ || (echo "Error copying License Agreements" && exit 1)
 
-#Unmount the DMG
-#hdiutil detach /Volumes/MountedVolumeName
+# Unmount the DMG
+hdiutil detach $MOUNT_PATH
