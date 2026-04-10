@@ -52,10 +52,10 @@ curl -L -o working/fmp_osx_deployment.zip "https://www.claris.com/resources/docu
 unzip "working/fmp_osx_deployment.zip" -d "working/"
 
 # Make the Claris shell script executable
-sudo chmod +x "working/fmp_osx_deployment/AppleRemoteDesktopDeployment.sh"
+sudo chmod +x "working/AppleRemoteDesktopDeployment.sh"
 
 # Make a customized .pkg in the working folder
-source ./working/fmp_osx_deployment/AppleRemoteDesktopDeployment.sh "working/"
+source ./working/AppleRemoteDesktopDeployment.sh "working/"
 
 # Unmount the DMG
 hdiutil detach "$MOUNT_PATH"
