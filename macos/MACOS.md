@@ -66,7 +66,7 @@ If you plan to do this completely automated at a future date and your users use 
 chmod +x deploy_pkg.sh
 
 for host in {{mac1 mac2 mac3 ...}}; do
-    scp {{package.pkg}} {{administrator_username}}@$host:/tmp/
-    ssh {{administrator_username}}@$host 'bash -s -- -p /tmp/{{package.pkg}}' < deploy_pkg.sh 
+    sudo scp {{package.pkg}} {{administrator_username}}@$host:/tmp/
+    sudo ssh {{administrator_username}}@$host 'bash -s -- -p /tmp/{{package.pkg}}' < deploy_pkg.sh 
 done
 ```

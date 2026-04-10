@@ -62,6 +62,9 @@ cd working/
 for file in *; do 
     if [[ "$file" != *.pkg ]]; then
         rm -rf "$file"
+    #Rename the package -- removing spaces makes everything else easier
+    else
+        mv "$file" "custom_fm.pkg"
     fi
 done
 
