@@ -40,6 +40,6 @@ chmod +x customize_pkg.sh
 sudo ./customize_pkg.sh
 ```
 
-
+3) The customized .pkg will now be available in the `working/` directory.
 
 #### Deploy the customized .pkg to your user's computers

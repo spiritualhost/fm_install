@@ -57,5 +57,13 @@ sudo chmod +x "working/AppleRemoteDesktopDeployment.sh"
 # Make a customized .pkg in the working folder
 source ./working/AppleRemoteDesktopDeployment.sh "working/"
 
+# Clean up working directory
+cd working/
+for file in *; do 
+    if [[ "$file" != *.pkg ]]; then
+        echo "$file"
+    fi
+fi
+
 # Unmount the DMG
 hdiutil detach "$MOUNT_PATH"
