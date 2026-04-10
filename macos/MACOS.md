@@ -44,5 +44,10 @@ sudo ./customize_pkg.sh
 
 #### Deploy the customized .pkg to your user's computers
 
-1) After confirming successful runtime of the [customize_pkg.sh script](./customize_pkg.sh), we will need to deploy the customized .pkg to users.
+1) After confirming successful runtime of the [customize_pkg.sh script](./customize_pkg.sh), we will need to deploy the customized .pkg to users. Copy that .pkg to an appropriate location.
 
+2) Command line arguments can be used to script out this process. Run the following command from within the `macos/` directory to get the help page.
+
+```bash
+./deploy_pkg.sh -h
+```
