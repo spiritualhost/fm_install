@@ -33,6 +33,8 @@ sudo ./customize_pkg.sh
 
 #### Deploy the customized .pkg to your user's computers
 
+#### Interactively
+
 1) After confirming successful runtime of the [customize_pkg.sh script](./customize_pkg.sh), we will need to deploy the customized .pkg to users. Copy that .pkg to an appropriate location.
 
 2) Command line arguments can be used to script out this process. Run the following command from within the `macos/` directory to get the help page.
@@ -46,4 +48,25 @@ sudo ./customize_pkg.sh
 ```bash
 chmod +x deploy_pkg.sh
 sudo ./deploy_pkg.sh -p {{package.pkg}}
+```
+
+#### Remotely
+
+Claris set this script process up with ARD in mind, so that can be used as well (and may be easier for certain users). The below is the quick and free version of that same process.
+
+1) Enable SSH on all destination computers.
+
+![Enable SSH](../assets/macos-ssh.gif)
+
+If you plan to do this completely automated at a future date and your users use DHCP, [consider setting static IPs](https://support.apple.com/en-ca/guide/mac-help/mchlp2718/mac). Get the IPs handy for the next step.
+
+2) Deploy using SSH.
+
+```bash
+chmod +x deploy_pkg.sh
+
+for host in {{mac1 mac2 mac3 ...}}; do
+    scp {{package.pkg}} {{administrator_username}}@$host:/tmp/
+    ssh {{administrator_username}}@$host 'bash -s -- -p /tmp/{{package.pkg}}' < deploy_pkg.sh 
+done
 ```

@@ -2,6 +2,7 @@ fmp*
 *.fmcert
 Assisted*
 config*
+*.pkg
 
 #allow the template config file
 !assets/config.bat

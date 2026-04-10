@@ -13,7 +13,6 @@ Help()
    echo "Arguments:"
    echo "h                   Print this Help."
    echo "p {{package.pkg}}   Provide path to .pkg file"
-   echo "v                   Verbose mode."
    echo
    exit 0
 }
