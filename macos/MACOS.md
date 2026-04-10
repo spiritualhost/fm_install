@@ -43,3 +43,6 @@ sudo ./customize_pkg.sh
 3) The customized .pkg will now be available in the `working/` directory.
 
 #### Deploy the customized .pkg to your user's computers
+
+1) After confirming successful runtime of the [customize_pkg.sh script](./customize_pkg.sh), we will need to deploy the customized .pkg to users.
+
