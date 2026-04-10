@@ -27,7 +27,7 @@ while getopts ":hp:" option; do
       h) # Display help
          Help   ;;   
       p) # Give script path to customized .pkg
-         PKG_PATH="$OPTARG"   ;; 
+         PKG_PATH=$OPTARG   ;; 
       \?) # Invalid option
          echo "Error: invalid option. Run './deploy_pkg.sh -h' to get CLI options."
          exit 1
@@ -44,7 +44,6 @@ main() {
     # Install custom package
     echo "Installing custom FileMaker package located at $1"
     sudo installer -package "$1" -target "/Applications" || (echo "Error installing package, please try again" && exit 1)
-    echo "Installation successful. Exiting program cleanly."
     exit 0
 }
 

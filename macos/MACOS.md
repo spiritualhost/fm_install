@@ -15,21 +15,7 @@ For macos specific instructions from Claris, [see here](https://help.claris.com/
 1) Clone the repo:
 
 ```bash
-#a. Initialize a partial clone
-git clone --filter=blob:none --no-checkout https://github.com/spiritualhost/fm_install.git
-cd fm_install
-
-#b. Ignore file permission changes (i.e., after making executable in step 2, allow pulling cleanly for repo updates)
-git config --global core.fileMode false
-
-#c. Enable sparse checkout
-git sparse-checkout init --cone
-
-#d. Specify the folder
-git sparse-checkout set macos/
-
-#e. Finalize the checkout
-git checkout
+git pull https://github.com/spiritualhost/fm_install.git
 ```
 
 2) Run the [customize_pkg.sh script](./customize_pkg.sh). It may require making it executable first:
@@ -56,5 +42,5 @@ sudo ./customize_pkg.sh
 
 ```bash
 chmod +x deploy_pkg.sh
-sudo ./deploy_pkg.sh {{package.pkg}}
+sudo ./deploy_pkg.sh "{{package.pkg}}"
 ```
