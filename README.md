@@ -6,6 +6,8 @@ Claris FileMaker installation automation script.
 
 A scripted out silent assisted installation for Claris FileMaker on Windows. Requires only minimal configuration and can then be deployed via GPO. No more painful individual user installations.
 
+ For information on MacOS automation see [MacOS docs](macos/MACOS.md).
+
 ## Getting Started
 
 ### Dependencies

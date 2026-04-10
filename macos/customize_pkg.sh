@@ -46,10 +46,10 @@ rsync -av "$LICENSE_CERT" working/
 # Alter the assisted install file here if desired
 
 # Download the Apple Remote Desktop deployment script for FileMaker Pro
-curl -L --output-dir working/ -o "https://www.filemaker.com/redirects/fmp22_admin.html?page=docs_ardscript&lang=en" || (echo "Failure downloading Apple Remote Desktop resource from Claris servers, please try again later" && exit 1)
+curl -L -o working/fmp_osx_deployment.zip "https://www.claris.com/resources/documentation/docs/fmp_osx_deployment.zip" || (echo "Failure downloading Apple Remote Desktop resource from Claris servers, please try again later" && exit 1)
 
 # Extract contents of directory from Claris
-unzip "working"/*.zip -d working/claris_ard/
+unzip "working/fmp_osx_development.zip" -d "working/"
 
 # Unmount the DMG
 hdiutil detach "$MOUNT_PATH"
