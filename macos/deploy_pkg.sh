@@ -41,8 +41,8 @@ done
 ############################################################
 main() {
     # Install custom package
-    echo "Installing custom FileMaker package located at $1"
-    sudo installer -package "$1" -target "/Applications" || (echo "Error installing package, please try again" && exit 1)
+    if [ $2 -eq 1 ]; then echo "Installing custom FileMaker package located at $1"
+    sudo installer -package "$1" -target "/Applications" || (echo "Error installing package, please try again" >&2 && exit 1)
     exit 0
 }
 
@@ -52,17 +52,23 @@ main() {
 
 # Was a package path provided
 if [ -z "$PKG_PATH" ]; then
-    echo "Error: -p <package> is required."
+    echo "Error: -p <package> is required." >&2
     echo
     Help
 fi
 
 # Check that path is valid (i.e., is .pkg)
 if [[ "$PKG_PATH" != *.pkg ]]; then
-    echo "Error: package parameter must be .pkg."
+    echo "Error: package parameter must be .pkg." >&2
     echo
     Help
 fi
 
+# Check if running interactively
+if [ -t 0 ]; then
+   TTY=1 # Running in TTY
+else
+   TTY=0
+
 # Enter the main function
-main "$PKG_PATH"
+main "$PKG_PATH" $TTY
