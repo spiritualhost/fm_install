@@ -41,23 +41,12 @@ done
 ############################################################
 ############################################################
 main() {
+    # Install custom package
     echo "Installing custom FileMaker package located at $1"
     sudo installer -package "$1" -target "/Applications" || (echo "Error installing package, please try again" && exit 1)
     echo "Installation successful. Exiting program cleanly."
     exit 0
 }
-
-
-
-
-#Test if running interactively (TTY)
-#if [ -t 0 ]; then
-#    echo "Running in an interactive terminal."
-#else    
-#    echo "Input is piped or from a file."
-#fi 
-
-# Install custom package
 
 ############################################################
 # Entry Point                                              #
