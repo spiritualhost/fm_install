@@ -51,3 +51,9 @@ sudo ./customize_pkg.sh
 ```bash
 ./deploy_pkg.sh -h
 ```
+
+3) When ready, install the package
+
+```bash
+./deploy_pkg.sh {{package.pkg}}
+```
