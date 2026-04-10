@@ -61,7 +61,7 @@ source ./working/AppleRemoteDesktopDeployment.sh "working/"
 cd working/
 for file in *; do 
     if [[ "$file" != *.pkg ]]; then
-        echo "$file"
+        rm -rf "$file"
     fi
 done
 
