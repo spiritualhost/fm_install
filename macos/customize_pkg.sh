@@ -49,7 +49,13 @@ rsync -av "$LICENSE_CERT" working/
 curl -L -o working/fmp_osx_deployment.zip "https://www.claris.com/resources/documentation/docs/fmp_osx_deployment.zip" || (echo "Failure downloading Apple Remote Desktop resource from Claris servers, please try again later" && exit 1)
 
 # Extract contents of directory from Claris
-unzip "working/fmp_osx_development.zip" -d "working/"
+unzip "working/fmp_osx_deployment.zip" -d "working/"
+
+# Make the Claris shell script executable
+sudo chmod +x "working/fmp_osx_deployment/AppleRemoteDesktopDeployment.sh"
+
+# Make a customized .pkg in the working folder
+source ./working/fmp_osx_deployment/AppleRemoteDesktopDeployment.sh "working/"
 
 # Unmount the DMG
 hdiutil detach "$MOUNT_PATH"

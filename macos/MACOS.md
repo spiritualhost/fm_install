@@ -37,7 +37,7 @@ git checkout
 ```bash
 cd macos/
 chmod +x customize_pkg.sh
-./customize_pkg.sh
+sudo ./customize_pkg.sh
 ```
 
 
