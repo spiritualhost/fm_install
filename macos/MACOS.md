@@ -16,9 +16,12 @@ For macos specific instructions from Claris, [see here](https://help.claris.com/
 
 ```bash
 git clone https://github.com/spiritualhost/fm_install.git
+cd fm_install/
 ```
 
-2) Run the [customize_pkg.sh script](./customize_pkg.sh). It may require making it executable first:
+2) Copy the FileMaker .dmg and license to an accessible location -- the script will request you find them.
+
+3) Run the [customize_pkg.sh script](./customize_pkg.sh). It may require making it executable first:
 
 ```bash
 cd macos/
@@ -26,7 +29,7 @@ chmod +x customize_pkg.sh
 sudo ./customize_pkg.sh
 ```
 
-3) The customized .pkg will now be available in the `working/` directory.
+4) The customized .pkg will now be available in the `working/` directory.
 
 #### Deploy the customized .pkg to your user's computers
 
@@ -42,5 +45,5 @@ sudo ./customize_pkg.sh
 
 ```bash
 chmod +x deploy_pkg.sh
-sudo ./deploy_pkg.sh "{{package.pkg}}"
+sudo ./deploy_pkg.sh -p {{package.pkg}}
 ```
