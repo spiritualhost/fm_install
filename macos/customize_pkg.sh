@@ -63,7 +63,7 @@ for file in *; do
     if [[ "$file" != *.pkg ]]; then
         echo "$file"
     fi
-fi
+done
 
 # Unmount the DMG
 hdiutil detach "$MOUNT_PATH"
