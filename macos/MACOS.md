@@ -15,7 +15,7 @@ For macos specific instructions from Claris, [see here](https://help.claris.com/
 1) Clone the repo:
 
 ```bash
-git pull https://github.com/spiritualhost/fm_install.git
+git clone https://github.com/spiritualhost/fm_install.git
 ```
 
 2) Run the [customize_pkg.sh script](./customize_pkg.sh). It may require making it executable first:
