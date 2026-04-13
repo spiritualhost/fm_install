@@ -47,7 +47,7 @@ sudo ./customize_pkg.sh
 
 ```bash
 chmod +x deploy_pkg.sh
-sudo ./deploy_pkg.sh -p {{package.pkg}}
+sudo ./deploy_pkg.sh -p custom_fm.pkg
 ```
 
 #### Remotely
@@ -65,8 +65,9 @@ If you plan to do this completely automated at a future date and your users use 
 ```bash
 chmod +x deploy_pkg.sh
 
-for host in {{mac1 mac2 mac3 ...}}; do
-    sudo scp {{package.pkg}} {{administrator_username}}@$host:/tmp/
-    sudo ssh {{administrator_username}}@$host 'bash -s -- -p /tmp/{{package.pkg}}' < deploy_pkg.sh 
+for host in {{mac1, mac2, mac3 ...}}; do
+    scp custom_fm.pkg deploy_pkg.sh {{administrator_username}}@$host:/tmp/
+    ssh {{administrator_username}}@$host 'bash /tmp/deploy_pkg.sh -p /tmp/custom_fm.pkg'
+    ssh {{administrator_username}}@$host 'rm -f /tmp/deploy_pkg.sh /tmp/custom_fm.pkg'
 done
 ```

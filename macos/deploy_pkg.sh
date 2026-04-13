@@ -40,10 +40,12 @@ done
 ############################################################
 ############################################################
 main() {
-    # Install custom package
-    if [ $2 -eq 1 ]; then echo "Installing custom FileMaker package located at $1"
-    sudo installer -package "$1" -target "/Applications" || (echo "Error installing package, please try again" >&2 && exit 1)
-    exit 0
+   # Install custom package
+   if [ $2 -eq 1 ]; then 
+      echo "Installing custom FileMaker package located at $1"
+   fi
+   sudo installer -package "$1" -target "/" || (echo "Error installing package, please try again" >&2 && exit 1)
+   exit 0
 }
 
 ############################################################
@@ -69,6 +71,7 @@ if [ -t 0 ]; then
    TTY=1 # Running in TTY
 else
    TTY=0
+fi
 
 # Enter the main function
 main "$PKG_PATH" $TTY
