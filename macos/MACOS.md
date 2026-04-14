@@ -49,25 +49,3 @@ sudo ./customize_pkg.sh
 chmod +x deploy_pkg.sh
 sudo ./deploy_pkg.sh -p custom_fm.pkg
 ```
-
-#### Remotely
-
-Claris set this script process up with ARD in mind, so that can be used as well (and may be easier for certain users). The below is the quick and free version of that same process.
-
-1) Enable SSH on all destination computers.
-
-![Enable SSH](../assets/macos-ssh.gif)
-
-If you plan to do this completely automated at a future date and your users use DHCP, [consider setting static IPs](https://support.apple.com/en-ca/guide/mac-help/mchlp2718/mac). Get the IPs handy for the next step.
-
-2) Deploy using SSH.
-
-```bash
-chmod +x deploy_pkg.sh
-
-for host in {{mac1, mac2, mac3 ...}}; do
-    scp custom_fm.pkg deploy_pkg.sh {{administrator_username}}@$host:/tmp/
-    ssh {{administrator_username}}@$host 'bash /tmp/deploy_pkg.sh -p /tmp/custom_fm.pkg'
-    ssh {{administrator_username}}@$host 'rm -f /tmp/deploy_pkg.sh /tmp/custom_fm.pkg'
-done
-```
