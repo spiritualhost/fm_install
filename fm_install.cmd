@@ -42,7 +42,7 @@ goto :EOF
 :MAIN
 :: Make log directory
 if "%VERBOSE%"=="0" (
-    if not exist "%NET_SHARE%\log" mkdir "%NET_SHARE%\log"
+    if not exist "%NET_SHARE%/log" mkdir "%NET_SHARE%/log"
     echo "Filemaker Installation Log." >> "%NET_SHARE%/log/log.txt"
     powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
 ) else (
