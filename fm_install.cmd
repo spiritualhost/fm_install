@@ -42,9 +42,9 @@ goto :EOF
 :MAIN
 :: Make log directory
 if "%VERBOSE%"=="0" (
-    mkdir "log"
+    if not exist "%NET_SHARE%\log" mkdir "%NET_SHARE%\log"
     echo "Filemaker Installation Log." >> "%NET_SHARE%/log/log.txt"
-    powershell -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
+    powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
 ) else (
     echo "[VERBOSE] Beginning FileMaker installation..."
 ) 
@@ -54,7 +54,7 @@ call "%~dp0config.bat"
 
 :: Return net share value for debugging
 if "%VERBOSE%"=="0" (
-    powershell -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
+    powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
     echo "Net share is '%NET_SHARE%'" >> "%NET_SHARE%/log/log.txt"
 ) else (
     echo "[VERBOSE] Net share is '%NET_SHARE%'"
@@ -99,7 +99,7 @@ set AI_DISABLEEXTERNALURLS=0
 
 :: Confirm successful ingestion of above variables by creating Assisted Install.txt
 if "%VERBOSE%"=="0" (
-    powershell -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
+    powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
     echo "Creating 'Assisted Install.txt'" >> "%NET_SHARE%/log/log.txt"
 ) else (
     echo "[VERBOSE] Creating 'Assisted Install.txt'"
@@ -121,7 +121,7 @@ set "ROOT_PATH=%NET_SHARE%\Filemaker*"
 
 :: Confirm root path
 if "%VERBOSE%"=="0" (
-    powershell -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
+    powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
     echo "Root path is '%ROOT_PATH%'" >> "%NET_SHARE%/log/log.txt"
 ) else (
     echo "Root path is '%ROOT_PATH%'"
@@ -139,7 +139,7 @@ set "SETUP_EXECUTABLE_PATH=%SETUP_FILEPATH%\setup.exe"
 
 :: Confirm setup executable path
 if "%VERBOSE%"=="0" (
-    powershell -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
+    powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
     echo "Setup Executable path is '%SETUP_EXECUTABLE_PATH%', now installing..." >> "%NET_SHARE%/log/log.txt"
 ) else (
     echo "[VERBOSE] Setup Executable path is '%SETUP_EXECUTABLE_PATH%', now installing..."
@@ -179,7 +179,7 @@ for /d %%D in ("C:\Program Files\FileMaker\FileMaker*") do (
 
 :: Confirm script conclusion
 if "%VERBOSE%"=="0" (
-    powershell -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
+    powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
     echo "Script exiting..." >> "%NET_SHARE%/log/log.txt"
 ) else (
     echo "[VERBOSE] Script exiting..."
