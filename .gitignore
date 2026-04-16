@@ -3,6 +3,7 @@ fmp*
 Assisted*
 config*
 *.pkg
+dev/
 
 #allow the template config file
 !assets/config.bat

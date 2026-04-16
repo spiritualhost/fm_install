@@ -40,7 +40,7 @@ echo Only one flag can be used per run.
 goto :EOF
 
 :MAIN
-:: Connect to network share and get drive letter
+:: Import config variables to get user-provided remote drive
 call "%~dp0config.bat"
 
 :: Verbose debug output
@@ -55,7 +55,7 @@ set AI_LANGUAGE=English
 :: Install for all users
 set AI_APPLICATIONUSERS=AllUsers
 :: Prevent users from creating custom apps
-set AI_NONEWDATABASES=1
+set AI_NONEWDATABASES=0
 :: Create a shortcut for FileMaker Pro onm the desktop and in the Quick Launch toolbar
 set AI_SHORTCUTS=1
 :: Suppress the personalization box during installation
