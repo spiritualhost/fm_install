@@ -6,7 +6,7 @@ set __COMPAT_LAYER=RunAsInvoker
 :: For expanded wildcards 
 setlocal enabledelayedexpansion
 
-:: Define flags
+:: Define flags -- auto-log if 0, print to stdout (terminal) if 1
 set VERBOSE=0
 
 :PARSE_ARGS
@@ -40,11 +40,25 @@ echo Only one flag can be used per run.
 goto :EOF
 
 :MAIN
+:: Make log directory
+if "%VERBOSE%"=="0" (
+    mkdir "log"
+    echo "Filemaker Installation Log." >> "%NET_SHARE%/log/log.txt"
+    powershell -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
+) else (
+    echo "[VERBOSE] Beginning FileMaker installation..."
+) 
+
 :: Import config variables to get user-provided remote drive
 call "%~dp0config.bat"
 
-:: Verbose debug output
-if "%VERBOSE%"=="1" echo [VERBOSE] Net share is "%NET_SHARE%"
+:: Return net share value for debugging
+if "%VERBOSE%"=="0" (
+    powershell -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
+    echo "Net share is '%NET_SHARE%'" >> "%NET_SHARE%/log/log.txt"
+) else (
+    echo "[VERBOSE] Net share is '%NET_SHARE%'"
+) 
 
 :: EULA acceptance
 set AI_LICENSE_ACCEPTED=1
@@ -83,8 +97,13 @@ set AI_SET_FILE_CACHE=
 :: Enable or disable accessing external URLs when starting FileMaker Pro
 set AI_DISABLEEXTERNALURLS=0
 
-:: Verbose debug output
-if "%VERBOSE%"=="1" echo [VERBOSE] Creating 'Assisted Install.txt'
+:: Confirm successful ingestion of above variables by creating Assisted Install.txt
+if "%VERBOSE%"=="0" (
+    powershell -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
+    echo "Creating 'Assisted Install.txt'" >> "%NET_SHARE%/log/log.txt"
+) else (
+    echo "[VERBOSE] Creating 'Assisted Install.txt'"
+)
 
 :: Create Assisted Install.txt file (no >>, new file created)
 echo: > "Assisted Install.txt"
@@ -100,8 +119,13 @@ for /f "delims=" %%V in ('set AI 2^nul') do (
 :: Create path variables using wildcards
 set "ROOT_PATH=%NET_SHARE%\Filemaker*"
 
-:: Verbose debug output
-if "%VERBOSE%"=="1" echo [VERBOSE] Root path is "%ROOT_PATH%"
+:: Confirm root path
+if "%VERBOSE%"=="0" (
+    powershell -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
+    echo "Root path is '%ROOT_PATH%'" >> "%NET_SHARE%/log/log.txt"
+) else (
+    echo "Root path is '%ROOT_PATH%'"
+)
 
 for /d %%D in ("%ROOT_PATH%") do (
     set "SETUP_FILEPATH=%%D\Files"
@@ -113,8 +137,13 @@ copy /y "Assisted Install.txt" "%SETUP_FILEPATH%\Assisted Install.txt"
 :: Create variable path pointing to setup.exe
 set "SETUP_EXECUTABLE_PATH=%SETUP_FILEPATH%\setup.exe"
 
-:: Verbose debug output
-if "%VERBOSE%"=="1" echo [VERBOSE] Setup Executable path is "%SETUP_EXECUTABLE_PATH%", now installing...
+:: Confirm setup executable path
+if "%VERBOSE%"=="0" (
+    powershell -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
+    echo "Setup Executable path is '%SETUP_EXECUTABLE_PATH%', now installing..." >> "%NET_SHARE%/log/log.txt"
+) else (
+    echo "[VERBOSE] Setup Executable path is '%SETUP_EXECUTABLE_PATH%', now installing..."
+)
 
 for /d %%D in ("C:\Program Files\FileMaker\FileMaker*") do (
     if exist "%%D\FileMaker Pro.exe" (
@@ -148,6 +177,13 @@ for /d %%D in ("C:\Program Files\FileMaker\FileMaker*") do (
 :: Install to a non-default location on the user's computer
 :: "%SETUP_EXECUTABLE_PATH%" /qb+ INSTALLDIR="installpath"
 
-::End script cleanly
-if "%VERBOSE%"=="1" echo [VERBOSE] Script exiting...
+:: Confirm script conclusion
+if "%VERBOSE%"=="0" (
+    powershell -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%NET_SHARE%/log/log.txt"
+    echo "Script exiting..." >> "%NET_SHARE%/log/log.txt"
+) else (
+    echo "[VERBOSE] Script exiting..."
+)
+
+:: End script cleanly
 goto :EOF

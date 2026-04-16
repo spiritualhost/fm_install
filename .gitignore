@@ -4,6 +4,7 @@ Assisted*
 config*
 *.pkg
 dev/
+log/
 
 #allow the template config file
 !assets/config.bat
