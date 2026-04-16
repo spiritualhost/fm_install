@@ -52,6 +52,10 @@ You should now be prepared to run the script.
 
 ### Executing program
 
+#### Set Up Logging
+
+Add a writable network path to the config.bat for the log to be transferred at the end of the script. Logs are automatically generated on non-verbose runs of the script.
+
 #### Run interactively
 
 1) Right click the `fm_install.cmd` script and click "Run as Administrator."
