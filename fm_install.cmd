@@ -183,7 +183,7 @@ if "%VERBOSE%"=="0" (
     echo "Script exiting..." >> "%LOCAL_LOG%"
 
     ::Copy logs to remote network share
-    copy "%LOCAL_LOG%" "%LOG_DIR%" 2>nul
+    copy "%LOCAL_LOG%" "%LOG_DIR%\%COMPUTERNAME%_fm.txt" 2>nul
 
 ) else (
     echo "[VERBOSE] Script exiting..."
