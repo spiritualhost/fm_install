@@ -94,7 +94,7 @@ In many cases, the manual FileMaker installation will include installing additio
 
 See the ![config.bat](assets/config.bat) for binary options.
 
-![Configuring Installation Options](assets/configuring-options.png)
+![Configuring Installation Options](assets/options-config.gif)
 
 #### Troi Plugin
 
@@ -102,8 +102,9 @@ Installing the Troi Plugin takes two separate files, `TroiPay.txt` and `Troi_Fil
 
 #### Installing Fonts
 
-Installing fonts should be done system-wide for FileMaker installations to allow any applications that need them access. 
+Installing fonts should be done system-wide for FileMaker installations to allow any applications that need them access. The installation of the fonts takes place with a separate `.ps1` script located in the `add-dep/` directory. Any fonts present in the font directory path provided in `config.bat` will be installed and have registry values written for them.
 
+Supported font types: ".fon", ".otf", ".ttc", ".ttf"
 
 ## Help
 
