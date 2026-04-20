@@ -177,19 +177,23 @@ for /d %%D in ("C:\Program Files\FileMaker\FileMaker*") do (
 :: Install to a non-default location on the user's computer
 :: "%SETUP_EXECUTABLE_PATH%" /qb+ INSTALLDIR="installpath"
 
-:: Install Troi File Plugin
-if "%VERBOSE%"=="0" (
-    powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%LOCAL_LOG%"
-    echo "Installing Troi File Plugin..." >> "%LOCAL_LOG%"
-) else (
-    echo "[VERBOSE] Installing Troi File Plugin..."
-)
+:: Additional Dependency Installation
 
-:: Find the installed FileMaker directory dynamically
-for /d %%D in ("C:\Program Files\FileMaker\FileMaker*") do (
-    if exist "%%D\FileMaker Pro.exe" (
-        copy /y "%SETUP_FILEPATH%\troipay.txt" "%%D\troipay.txt"
-        copy /y "%SETUP_FILEPATH%\Troi_File_Plugin.fmx64" "%%D\Extensions\Troi_File_Plugin.fmx64"
+:: Install Troi File Plugin
+if "%TROI_PLUGIN%"=="1" (
+    if "%VERBOSE%"=="0" (
+        powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%LOCAL_LOG%"
+        echo "Installing Troi File Plugin..." >> "%LOCAL_LOG%"
+    ) else (
+        echo "[VERBOSE] Installing Troi File Plugin..."
+    )
+    
+    :: Find the installed FileMaker directory dynamically
+    for /d %%D in ("C:\Program Files\FileMaker\FileMaker*") do (
+        if exist "%%D\FileMaker Pro.exe" (
+            copy /y "%SETUP_FILEPATH%\troipay.txt" "%%D\troipay.txt"
+            copy /y "%SETUP_FILEPATH%\Troi_File_Plugin.fmx64" "%%D\Extensions\Troi_File_Plugin.fmx64"
+        )
     )
 )
 
