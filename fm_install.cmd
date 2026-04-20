@@ -191,8 +191,8 @@ if "%TROI_PLUGIN%"=="1" (
     :: Find the installed FileMaker directory dynamically
     for /d %%D in ("C:\Program Files\FileMaker\FileMaker*") do (
         if exist "%%D\FileMaker Pro.exe" (
-            copy /y "%SETUP_FILEPATH%\troipay.txt" "%%D\troipay.txt"
-            copy /y "%SETUP_FILEPATH%\Troi_File_Plugin.fmx64" "%%D\Extensions\Troi_File_Plugin.fmx64"
+            copy /y "%TROI_PATH%\TroiPay.txt" "%%D\TroiPay.txt"
+            copy /y "%TROI_PATH%\Troi_File_Plugin.fmx64" "%%D\Extensions\Troi_File_Plugin.fmx64"
         )
     )
 )

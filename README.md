@@ -96,6 +96,10 @@ See the ![config.bat](assets/config.bat) for binary options.
 
 ![Configuring Installation Options](assets/configuring-options.png)
 
+#### Troi Plugin
+
+Installing the Troi Plugin takes two separate files, `TroiPay.txt` and `Troi_File_Plugin.fmx64`, which need to be placed specifically post-installation. The `config.bat` will need a network path to the folder above both files, as it will look in that folder before copying them.
+
 ## Help
 
 ```bash
