@@ -88,6 +88,14 @@ Click `Properties`.
 
 The script will now run for all applicable computers when they next log on.
 
+#### Additional Dependency Installation
+
+In many cases, the manual FileMaker installation will include installing additional dependencies, like extensions or fonts, which can also be extremely time-consuming. In order to remain modular, the script blocks installing these additional dependencies are triggered in a binary fashion rather than by default. This will allow different installations to take on the different characteristics appropriate to them. Variables set to 1 will run their corresponding block, whereas those set to 0 will skip the block entirely.
+
+See the ![config.bat](assets/config.bat) for binary options.
+
+![Configuring Installation Options](assets/configuring-options.png)
+
 ## Help
 
 ```bash

@@ -5,6 +5,7 @@ config*
 *.pkg
 dev/
 log/
+fonts/
 
 #allow the template config file
 !assets/config.bat
