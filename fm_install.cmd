@@ -44,7 +44,7 @@ goto :EOF
 if "%VERBOSE%"=="0" (
     set LOCAL_LOG=%TEMP%\fm_install_log.txt
     echo "Filemaker Installation Log." >> "%LOCAL_LOG%"
-    powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%LOCAL_LOG%"
+    for /f "delims=" %%T in ('powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')"') do echo %%T >> "%LOCAL_LOG%"
 ) else (
     echo "[VERBOSE] Beginning FileMaker installation..."
 ) 
@@ -54,7 +54,7 @@ call "%~dp0config.bat"
 
 :: Return net share value for debugging
 if "%VERBOSE%"=="0" (
-    powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%LOCAL_LOG%"
+    for /f "delims=" %%T in ('powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')"') do echo %%T >> "%LOCAL_LOG%"
     echo "Net share is '%NET_SHARE%'" >> "%LOCAL_LOG%"
 ) else (
     echo "[VERBOSE] Net share is '%NET_SHARE%'"
@@ -99,7 +99,7 @@ set AI_DISABLEEXTERNALURLS=0
 
 :: Confirm successful ingestion of above variables by creating Assisted Install.txt
 if "%VERBOSE%"=="0" (
-    powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%LOCAL_LOG%"
+    for /f "delims=" %%T in ('powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')"') do echo %%T >> "%LOCAL_LOG%"
     echo "Creating 'Assisted Install.txt'" >> "%LOCAL_LOG%"
 ) else (
     echo "[VERBOSE] Creating 'Assisted Install.txt'"
@@ -121,7 +121,7 @@ set "ROOT_PATH=%NET_SHARE%\Filemaker*"
 
 :: Confirm root path
 if "%VERBOSE%"=="0" (
-    powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%LOCAL_LOG%"
+    for /f "delims=" %%T in ('powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')"') do echo %%T >> "%LOCAL_LOG%"
     echo "Root path is '%ROOT_PATH%'" >> "%LOCAL_LOG%"
 ) else (
     echo "Root path is '%ROOT_PATH%'"
@@ -139,7 +139,7 @@ set "SETUP_EXECUTABLE_PATH=%SETUP_FILEPATH%\setup.exe"
 
 :: Confirm setup executable path
 if "%VERBOSE%"=="0" (
-    powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%LOCAL_LOG%"
+    for /f "delims=" %%T in ('powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')"') do echo %%T >> "%LOCAL_LOG%"
     echo "Setup Executable path is '%SETUP_EXECUTABLE_PATH%', now installing..." >> "%LOCAL_LOG%"
 ) else (
     echo "[VERBOSE] Setup Executable path is '%SETUP_EXECUTABLE_PATH%', now installing..."
@@ -182,7 +182,7 @@ for /d %%D in ("C:\Program Files\FileMaker\FileMaker*") do (
 :: Install Troi File Plugin
 if "%TROI_PLUGIN%"=="1" (
     if "%VERBOSE%"=="0" (
-        powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%LOCAL_LOG%"
+        for /f "delims=" %%T in ('powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')"') do echo %%T >> "%LOCAL_LOG%"
         echo "Installing Troi File Plugin..." >> "%LOCAL_LOG%"
     ) else (
         echo "[VERBOSE] Installing Troi File Plugin..."
@@ -199,7 +199,7 @@ if "%TROI_PLUGIN%"=="1" (
 
 :: Confirm script conclusion
 if "%VERBOSE%"=="0" (
-    powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')" | echo >> "%LOCAL_LOG%"
+    for /f "delims=" %%T in ('powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')"') do echo %%T >> "%LOCAL_LOG%"
     echo "Script exiting..." >> "%LOCAL_LOG%"
 
     ::Copy logs to remote network share
