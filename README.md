@@ -100,6 +100,11 @@ See the ![config.bat](assets/config.bat) for binary options.
 
 Installing the Troi Plugin takes two separate files, `TroiPay.txt` and `Troi_File_Plugin.fmx64`, which need to be placed specifically post-installation. The `config.bat` will need a network path to the folder above both files, as it will look in that folder before copying them.
 
+#### Installing Fonts
+
+Installing fonts should be done system-wide for FileMaker installations to allow any applications that need them access. 
+
+
 ## Help
 
 ```bash
@@ -130,3 +135,4 @@ This project is licensed under the GPL-3.0 License - see the LICENSE.md file for
 * [Instructions on Properly Setting up the Networked Volume](https://help.claris.com/en/pro-network-install-setup-guide/content/installing-network-windows.html)
 * [More Information Personalization Properties](https://help.claris.com/en/pro-network-install-setup-guide/content/setting-personalization-properties.html)
 * [Information on Configuring Bash Arguments for Automation](https://www.redhat.com/en/blog/arguments-options-bash-scripts)
+* [Handling Font Installation with the Windows Shell](https://www.jordanmalcolm.com/deploying-windows-10-fonts-at-scale/)

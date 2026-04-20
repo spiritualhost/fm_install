@@ -197,6 +197,19 @@ if "%TROI_PLUGIN%"=="1" (
     )
 )
 
+:: Install FileMaker Fonts
+if "%INSTALL_FONTS%"=="1" (
+    if "%VERBOSE%"=="0" (
+        for /f "delims=" %%T in ('powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')"') do echo %%T >> "%LOCAL_LOG%"
+        echo "Installing FileMaker Fonts..." >> "%LOCAL_LOG%"
+    ) else (
+        echo "[VERBOSE] Installing FileMaker Fonts..."
+    )
+
+    :: Execute script installation PS script, install all fonts in the %FONT_PATH%
+    powershell -NoProfile -ExecutionPolicy Bypass -File -WindowStyle Hidden -File "%~dp0add-dep\install-fonts-win.ps1"
+)
+
 :: Confirm script conclusion
 if "%VERBOSE%"=="0" (
     for /f "delims=" %%T in ('powershell -NoProfile -command "(Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')"') do echo %%T >> "%LOCAL_LOG%"
