@@ -207,7 +207,7 @@ if "%INSTALL_FONTS%"=="1" (
     )
 
     :: Execute script installation PS script, install all fonts in the %FONT_PATH%
-    powershell -NoProfile -ExecutionPolicy Bypass -File -WindowStyle Hidden -File "%~dp0add-dep\install-fonts-win.ps1"
+    powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0add-dep\install-fonts-win.ps1"
 )
 
 :: Confirm script conclusion
